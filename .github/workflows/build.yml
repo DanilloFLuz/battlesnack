@@ -29,8 +29,8 @@ jobs:
     - name: Deploy to Sandbox
       if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
       env:
-        USERNAME: ${{ secrets.anypoint_platform_username }}
-        PASSWORD: ${{ secrets.anypoint_platform_password }}
+        USERNAME: ${{ secrets.ANYPOINT_PLATFORM_PASSWORD }}
+        PASSWORD: ${{ secrets.ANYPOINT_PLATFORM_USERNAME }}
       run: |
         artifactName=$(ls target/*.jar | head -1)
         ./mvnw -ntp -B mule:deploy \
