@@ -1,0 +1,10 @@
+battlesnake:
+  config:
+    "apiversion": "1"
+    "author": "alexandramartinez"
+    "color" : "#000000"
+    "head" : "caffeine"
+    "tail" : "nr-booster"
+    "version" : "0.0.1-beta"
+
+"CLOUDHUB_APP_PREFIX": "battlesnake-dfl"
