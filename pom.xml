@@ -11,6 +11,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <app.runtime>4.4.0</app.runtime>
         <!--TODO: Define CH app prefix to be unique before deploying to CH -->
+        <CLOUDHUB_APP_PREFIX>teste</CLOUDHUB_APP_PREFIX>
         <region>us-east-1</region>
         <environment>Sandbox</environment>
         <mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
@@ -29,20 +30,18 @@
                 <extensions>true</extensions>
                 <configuration>
                     <cloudHubDeployment>
-                        <uri>https://anypoint.mulesoft.com</uri>
-                        <username>bab4b792696d4259a7abca0cc78c57e1</username>
-                        <password>de73c01A33BA407A8CBc80a644713bf1</password>
-                        <environment>${environment}</environment>
-                        <region>${region}</region>
-                        <applyLatestRuntimePatch>true</applyLatestRuntimePatch>
-                        <objectStoreV2>true</objectStoreV2>
-                         <deploymentSettings>
-                            <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
-                        </deploymentSettings>
-                        <properties>
-                            <env>dev</env>
-                        </properties>
-                    </cloudHubDeployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<muleVersion>${app.runtime}</muleVersion>
+						<username>${ANYPOINT_USER}</username>
+						<password>${ANYPOINT_PASSWORD}</password>
+						<applicationName>${CLOUDHUB_APP_PREFIX}-${project.artifactId}</applicationName>
+						<environment>${environment}</environment>
+						<region>${region}</region>
+						<workers>${workers}</workers>
+						<workerType>${workerType}</workerType>
+						<applyLatestRuntimePatch>true</applyLatestRuntimePatch>
+						<objectStoreV2>true</objectStoreV2>
+					</cloudHubDeployment>
                 </configuration>
             </plugin>
             <plugin>
