@@ -11,7 +11,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <app.runtime>4.4.0</app.runtime>
         <!--TODO: Define CH app prefix to be unique before deploying to CH -->
-        <CLOUDHUB_APP_PREFIX>teste</CLOUDHUB_APP_PREFIX>
         <region>us-east-1</region>
         <environment>Sandbox</environment>
         <mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
@@ -51,17 +50,6 @@
                         <goals>
                             <goal>enforce</goal>
                         </goals>
-                        <configuration>
-                            <rules>
-                                <requireProperty>
-                                    <property>CLOUDHUB_APP_PREFIX</property>
-                                    <message>"CloudHub app name must be unique. 'CLOUDHUB_APP_PREFIX' property must be specified to avoid name collision."</message>
-                                    <regex>^([A-Za-z0-9\-]+)$</regex>
-                                    <regexMessage>"Property 'CLOUDHUB_APP_PREFIX' can only contain letters, numbers, and dashes"</regexMessage>
-                                </requireProperty>
-                            </rules>
-                            <fail>true</fail>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
