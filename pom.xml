@@ -13,8 +13,6 @@
         <!--TODO: Define CH app prefix to be unique before deploying to CH -->
         <CLOUDHUB_APP_PREFIX>battlesnake-dfl</CLOUDHUB_APP_PREFIX>
         <region>us-east-1</region>
-        <workers>1</workers>
-        <workerType>MICRO</workerType>
         <environment>Sandbox</environment>
         <mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
     </properties>
@@ -33,16 +31,19 @@
                 <configuration>
                     <cloudHubDeployment>
                         <uri>https://anypoint.mulesoft.com</uri>
-                        <muleVersion>${app.runtime}</muleVersion>
-                        <username>${ANYPOINT_USER}</username>
-                        <password>${ANYPOINT_PASSWORD}</password>
+                        <username>bab4b792696d4259a7abca0cc78c57e1</username>
+                        <password>de73c01A33BA407A8CBc80a644713bf1</password>
                         <applicationName>${CLOUDHUB_APP_PREFIX}-${project.artifactId}</applicationName>
                         <environment>${environment}</environment>
                         <region>${region}</region>
-                        <workers>${workers}</workers>
-                        <workerType>${workerType}</workerType>
                         <applyLatestRuntimePatch>true</applyLatestRuntimePatch>
                         <objectStoreV2>true</objectStoreV2>
+                         <deploymentSettings>
+                            <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+                        </deploymentSettings>
+                        <properties>
+                            <env>dev</env>
+                        </properties>
                     </cloudHubDeployment>
                 </configuration>
             </plugin>

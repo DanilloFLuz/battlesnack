@@ -6,5 +6,3 @@ battlesnake:
     "head" : "caffeine"
     "tail" : "nr-booster"
     "version" : "0.0.1-beta"
-
-"CLOUDHUB_APP_PREFIX": "battlesnake-dfl"
