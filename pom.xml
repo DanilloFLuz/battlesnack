@@ -11,7 +11,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <app.runtime>4.4.0</app.runtime>
         <!--TODO: Define CH app prefix to be unique before deploying to CH -->
-        <CLOUDHUB_APP_PREFIX>battlesnake-dfl</CLOUDHUB_APP_PREFIX>
         <region>us-east-1</region>
         <environment>Sandbox</environment>
         <mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
@@ -33,7 +32,6 @@
                         <uri>https://anypoint.mulesoft.com</uri>
                         <username>bab4b792696d4259a7abca0cc78c57e1</username>
                         <password>de73c01A33BA407A8CBc80a644713bf1</password>
-                        <applicationName>${CLOUDHUB_APP_PREFIX}-${project.artifactId}</applicationName>
                         <environment>${environment}</environment>
                         <region>${region}</region>
                         <applyLatestRuntimePatch>true</applyLatestRuntimePatch>
