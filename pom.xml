@@ -8,14 +8,14 @@
     <name>mule-battlesnake-starter</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<app.runtime>4.4.0</app.runtime>
-		<mule.maven.plugin.version>3.5.4</mule.maven.plugin.version>
-		<!--TODO: Define CH app prefix to be unique before deploying to CH -->
-		<region>us-east-1</region>
-		<workers>1</workers>
-		<workerType>MICRO</workerType>
-		<environment>Sandbox</environment>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <app.runtime>4.4.0</app.runtime>
+        <!--TODO: Define CH app prefix to be unique before deploying to CH -->
+        <region>us-east-1</region>
+        <workers>1</workers>
+        <workerType>MICRO</workerType>
+        <environment>Sandbox</environment>
+        <mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
     </properties>
     <build>
         <plugins>
@@ -32,12 +32,12 @@
                 <configuration>
                     <cloudHubDeployment>
                         <uri>https://anypoint.mulesoft.com</uri>
-						<muleVersion>${app.runtime}</muleVersion>
-						<applicationName>${project.artifactId}</applicationName>
-						<environment>${environment}</environment>
-						<region>${region}</region>
-						<applyLatestRuntimePatch>true</applyLatestRuntimePatch>
-						<objectStoreV2>true</objectStoreV2>
+                        <muleVersion>${app.runtime}</muleVersion>
+                        <applicationName>${project.artifactId}</applicationName>
+                        <environment>${environment}</environment>
+                        <region>${region}</region>
+                        <applyLatestRuntimePatch>true</applyLatestRuntimePatch>
+                        <objectStoreV2>true</objectStoreV2>
                     </cloudHubDeployment>
                 </configuration>
             </plugin>
