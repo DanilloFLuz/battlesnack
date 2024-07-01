@@ -38,9 +38,6 @@
                         <region>${region}</region>
                         <workers>${workers}</workers>
 						<workerType>${workerType}</workerType>
-                        <deploymentSettings>
-                            <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
-                        </deploymentSettings>
                         <properties>
                             <env>dev</env>
                         </properties>
