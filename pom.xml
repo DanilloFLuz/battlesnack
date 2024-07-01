@@ -36,9 +36,8 @@
                         <applicationName>${project.artifactId}</applicationName>
                         <environment>${environment}</environment>
                         <region>${region}</region>
-                        <replicas>1</replicas>
-                        <vCores>0.1</vCores>
-                        <server>Repository</server>
+                        <workers>${workers}</workers>
+						<workerType>${workerType}</workerType>
                         <deploymentSettings>
                             <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
                         </deploymentSettings>
