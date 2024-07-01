@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>259a1bbf-6387-47b2-8fc5-1fb5ef125968</groupId>
     <artifactId>mule-battlesnake</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>3.2.10</version>
     <packaging>mule-application</packaging>
     <name>mule-battlesnake-starter</name>
     <properties>
@@ -15,7 +15,7 @@
         <workers>1</workers>
         <workerType>MICRO</workerType>
         <environment>Sandbox</environment>
-        <mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
+        <mule.maven.plugin.version>4.1.1</mule.maven.plugin.version>
     </properties>
     <build>
         <plugins>
@@ -43,11 +43,6 @@
                         </properties>
                     </cloudHubDeployment>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.2.1</version>
             </plugin>
         </plugins>
     </build>
