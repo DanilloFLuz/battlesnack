@@ -35,9 +35,10 @@
                         <muleVersion>${app.runtime}</muleVersion>
                         <applicationName>${project.artifactId}</applicationName>
                         <environment>${environment}</environment>
+                        <target>Cloudhub-US-East-1</target>
                         <region>${region}</region>
-                        <applyLatestRuntimePatch>true</applyLatestRuntimePatch>
-                        <objectStoreV2>true</objectStoreV2>
+                        <replicas>1</replicas>
+                        <vCores>0.1</vCores>
                     </cloudHubDeployment>
                 </configuration>
             </plugin>
