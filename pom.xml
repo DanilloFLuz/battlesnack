@@ -37,6 +37,9 @@
                         <environment>${environment}</environment>
                         <region>${region}</region>
                         <applyLatestRuntimePatch>true</applyLatestRuntimePatch>
+                        <deploymentSettings>
+                            <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+                        </deploymentSettings>
                         <objectStoreV2>true</objectStoreV2>
                     </cloudHubDeployment>
                 </configuration>
