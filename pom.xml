@@ -32,13 +32,10 @@
                     <classifier>mule-application</classifier>
                     <cloudhub2Deployment>
                         <uri>https://anypoint.mulesoft.com</uri>
-                        <provider>MC</provider>
                         <environment>Sandbox</environment>
                         <target>Cloudhub-US-East-1</target>
                         <server>Repository</server>
                         <applicationName>${project.artifactId}</applicationName>
-                        <workers>1</workers>
-                        <vCores>0.1</vCores>
                         <properties>
                             <env>dev</env>
                         </properties>
