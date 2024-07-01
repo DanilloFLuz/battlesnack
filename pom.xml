@@ -34,6 +34,7 @@
                         <uri>https://anypoint.mulesoft.com</uri>
                         <environment>Sandbox</environment>
                         <target>Cloudhub-US-East-1</target>
+                        <provider>MC</provider>
                         <server>Repository</server>
                         <applicationName>${project.artifactId}</applicationName>
                         <properties>
