@@ -37,7 +37,7 @@
                         <environment>${environment}</environment>
                         <region>${region}</region>
                         <workers>${workers}</workers>
-						<workerType>${workerType}</workerType>
+                        <workerType>${workerType}</workerType>
                         <properties>
                             <env>dev</env>
                         </properties>
