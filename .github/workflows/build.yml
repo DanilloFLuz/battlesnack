@@ -19,17 +19,20 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Build with Maven
+    - name: Test with Maven
+      env:
+        nexus_username: ${{ secrets.anypoint_platform_username }}
+        nexus_password: ${{ secrets.anypoint_platform_password }}
       run: ./mvnw -ntp -B package --file pom.xml -DskipMunitTests
     
     - name: Publish to Exchange
       run: |
         mvn deploy --settings .maven/settings.xml -DskipMunitTests \
-        -Dclient.id="${{ secrets.ANYPOINT_PLATFORM_USERNAME }}" \
-        -Dclient.secret="${{ secrets.ANYPOINT_PLATFORM_PASSWORD }}"
+        -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
+        -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
 
     - name: Deploy to CloudHub 2.0
       run: |
         mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
-        -Dclient.id="${{ secrets.ANYPOINT_PLATFORM_USERNAME }}" \
-        -Dclient.secret="${{ secrets.ANYPOINT_PLATFORM_PASSWORD }}"
+        -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
+        -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
