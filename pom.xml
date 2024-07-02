@@ -163,11 +163,24 @@
         </pluginRepository>
     </pluginRepositories>
     <distributionManagement>
-        <repository>
-            <id>Repository</id>
-            <name>Corporate Repository</name>
-            <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
-            <layout>default</layout>
-        </repository>
+        <repositories>
+            <repository>
+                <id>Repository</id>
+                <name>Corporate Repository</name>
+                <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
+                <layout>default</layout>
+            </repository>
+            <repository>
+                <id>central</id>
+                <name>Maven Central</name>
+                <url>https://repo.maven.apache.org/maven2</url>
+                <releases>
+                    <enabled>true</enabled>
+                </releases>
+                <snapshots>
+                    <enabled>false</enabled>
+                </snapshots>
+            </repository>
+        </repositories>
     </distributionManagement>
 </project>
