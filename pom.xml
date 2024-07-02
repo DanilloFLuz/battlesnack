@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>7d9b657a-1518-4ed9-a64c-3ec002f28f95</groupId>
     <artifactId>mule-battlesnake</artifactId>
-    <version>3.2.31</version>
+    <version>3.2.32</version>
     <packaging>mule-application</packaging>
     <name>mule-battlesnake</name>
     <properties>
