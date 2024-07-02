@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>7d9b657a-1518-4ed9-a64c-3ec002f28f95</groupId>
     <artifactId>mule-battlesnake</artifactId>
-    <version>3.2.33</version>
+    <version>3.2.34</version>
     <packaging>mule-application</packaging>
     <name>mule-battlesnake</name>
     <properties>
@@ -29,19 +29,20 @@
                 <extensions>true</extensions>
                 <configuration>
                     <classifier>mule-application</classifier>
-                    <cloudHubDeployment>
+                    <cloudhub2Deployment>
                         <uri>https://eu1.anypoint.mulesoft.com</uri>
+                        <target>Cloudhub-EU-Central-1</target>
+                        <provider>MC</provider>
                         <environment>Sandbox</environment>
                         <muleVersion>${app.runtime}</muleVersion>
                         <server>Repository</server>
                         <applicationName>${project.artifactId}</applicationName>
-                        <region>eu1</region>
-						<workers>1</workers>
-						<workerType>MICRO</workerType>
+                        <replicas>1</replicas>
+                        <vCores>0.1</vCores>
                         <properties>
                             <env>dev</env>
                         </properties>
-                    </cloudHubDeployment>
+                    </cloudhub2Deployment>
                 </configuration>
             </plugin>
             <plugin>
