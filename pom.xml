@@ -32,7 +32,7 @@
                     <cloudhub2Deployment>
                         <uri>https://eu1.anypoint.mulesoft.com</uri>
                         <environment>Sandbox</environment>
-                        <target>Cloudhub-EU-Central-1</target>
+                        <region>deu-c1.eu1</region>
                         <muleVersion>${app.runtime}</muleVersion>
                         <provider>MC</provider>
                         <server>Repository</server>
@@ -71,16 +71,6 @@
         </plugins>
     </build>
     <dependencies>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.23.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.23.1</version>
-        </dependency>
         <dependency>
             <groupId>org.mule.connectors</groupId>
             <artifactId>mule-sockets-connector</artifactId>
@@ -122,17 +112,6 @@
     </dependencies>
     <repositories>
         <repository>
-            <id>central</id>
-            <name>Maven Central</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
             <id>anypoint-exchange-v3</id>
             <name>Anypoint Exchange</name>
             <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
@@ -163,24 +142,11 @@
         </pluginRepository>
     </pluginRepositories>
     <distributionManagement>
-        <repositories>
-            <repository>
-                <id>Repository</id>
-                <name>Corporate Repository</name>
-                <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
-                <layout>default</layout>
-            </repository>
-            <repository>
-                <id>central</id>
-                <name>Maven Central</name>
-                <url>https://repo.maven.apache.org/maven2</url>
-                <releases>
-                    <enabled>true</enabled>
-                </releases>
-                <snapshots>
-                    <enabled>false</enabled>
-                </snapshots>
-            </repository>
-        </repositories>
+        <repository>
+            <id>Repository</id>
+            <name>Corporate Repository</name>
+            <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
+            <layout>default</layout>
+        </repository>
     </distributionManagement>
 </project>
