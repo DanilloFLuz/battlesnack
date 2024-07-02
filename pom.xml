@@ -14,6 +14,7 @@
         <mule.maven.plugin.version>4.1.1</mule.maven.plugin.version>
         <!-- DataWeave -->
         <dataweave.version>2.6.0</dataweave.version>
+        <region>deu-c1.eu1</region>
     </properties>
     <build>
         <plugins>
@@ -32,7 +33,7 @@
                     <cloudhub2Deployment>
                         <uri>https://eu1.anypoint.mulesoft.com</uri>
                         <environment>Sandbox</environment>
-                        <region>deu-c1.eu1</region>
+                        <region>${region}</region>
                         <muleVersion>${app.runtime}</muleVersion>
                         <provider>MC</provider>
                         <server>Repository</server>
