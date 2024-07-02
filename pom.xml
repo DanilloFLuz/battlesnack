@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>7d9b657a-1518-4ed9-a64c-3ec002f28f95</groupId>
+    <groupId>259a1bbf-6387-47b2-8fc5-1fb5ef125968</groupId>
     <artifactId>mule-battlesnake</artifactId>
-    <version>3.2.32</version>
+    <version>3.2.33</version>
     <packaging>mule-application</packaging>
     <name>mule-battlesnake</name>
     <properties>
