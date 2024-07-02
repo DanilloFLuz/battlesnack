@@ -3,16 +3,17 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>259a1bbf-6387-47b2-8fc5-1fb5ef125968</groupId>
     <artifactId>mule-battlesnake</artifactId>
-    <version>3.2.29</version>
+    <version>3.2.30</version>
     <packaging>mule-application</packaging>
     <name>mule-battlesnake</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <munit.version>3.1.0</munit.version>
+        <app.runtime>4.7.0</app.runtime>
+        <mule.maven.plugin.version>4.1.1</mule.maven.plugin.version>
         <!-- DataWeave -->
         <dataweave.version>2.6.0</dataweave.version>
-        <mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
     </properties>
     <build>
         <plugins>
@@ -32,9 +33,12 @@
                         <uri>https://anypoint.mulesoft.com</uri>
                         <environment>Sandbox</environment>
                         <target>Cloudhub-US-East-2</target>
+                        <muleVersion>${app.runtime}</muleVersion>
                         <provider>MC</provider>
                         <server>Repository</server>
                         <applicationName>${project.artifactId}</applicationName>
+                        <replicas>1</replicas>
+                        <vCores>0.1</vCores>
                         <properties>
                             <env>dev</env>
                         </properties>
