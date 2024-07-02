@@ -29,19 +29,19 @@
                 <extensions>true</extensions>
                 <configuration>
                     <classifier>mule-application</classifier>
-                    <cloudhub2Deployment>
-                        <provider>MC</provider>
+                    <cloudHubDeployment>
+                        <uri>https://eu1.anypoint.mulesoft.com</uri>
                         <environment>Sandbox</environment>
-                        <target>Cloudhub-EU-Central-1</target>
                         <muleVersion>${app.runtime}</muleVersion>
                         <server>Repository</server>
                         <applicationName>${project.artifactId}</applicationName>
-                        <replicas>2</replicas>
-                        <vCores>0.1</vCores>
+                        <region>eu1</region>
+						<workers>1</workers>
+						<workerType>MICRO</workerType>
                         <properties>
                             <env>dev</env>
                         </properties>
-                    </cloudhub2Deployment>
+                    </cloudHubDeployment>
                 </configuration>
             </plugin>
             <plugin>
