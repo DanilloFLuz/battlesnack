@@ -77,18 +77,10 @@
             <artifactId>log4j-core</artifactId>
             <version>2.17.1</version>
         </dependency>
-
         <!-- Log4j API -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.17.1</version>
-        </dependency>
-
-        <!-- Log4j Async (se necessário) -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-async</artifactId>
             <version>2.17.1</version>
         </dependency>
         <dependency>
