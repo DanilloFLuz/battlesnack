@@ -34,7 +34,6 @@
                         <environment>Sandbox</environment>
                         <target>Cloudhub-EU-Central-1</target>
                         <muleVersion>${app.runtime}</muleVersion>
-                        <provider>MC</provider>
                         <server>Repository</server>
                         <applicationName>${project.artifactId}</applicationName>
                         <replicas>2</replicas>
