@@ -30,7 +30,7 @@
                 <configuration>
                     <classifier>mule-application</classifier>
                     <cloudhub2Deployment>
-                        <uri>https://eu1.anypoint.mulesoft.com</uri>
+                        <uri>https://anypoint.mulesoft.com</uri>
                         <provider>MC</provider>
                         <environment>Sandbox</environment>
                         <target>Cloudhub-EU-Central-1</target>
