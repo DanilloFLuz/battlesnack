@@ -109,49 +109,8 @@
             <artifactId>wlang</artifactId>
             <version>${dataweave.version}</version>
         </dependency>
-
-        <!-- Log4j Core -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>3.0.0-beta2</version>
-        </dependency>
-
-        <!-- Log4j API -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>3.0.0-beta2</version>
-        </dependency>
-
-        <!-- Log4j SLF4J Implementation (optional) -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>3.0.0-beta2</version>
-        </dependency>
-        
-        <!-- Log4j JUL (Java Util Logging) -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-jul</artifactId>
-            <version>3.0.0-beta2</version>
-        </dependency>
-
     </dependencies>
     <repositories>
-        <repository>
-            <id>central</id>
-            <name>Maven Central</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
         <repository>
             <id>anypoint-exchange-v3</id>
             <name>Anypoint Exchange</name>
