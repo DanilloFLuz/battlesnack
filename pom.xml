@@ -3,17 +3,18 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>7d9b657a-1518-4ed9-a64c-3ec002f28f95</groupId>
     <artifactId>mule-battlesnake</artifactId>
-    <version>3.2.34</version>
+    <version>3.2.35</version>
     <packaging>mule-application</packaging>
     <name>mule-battlesnake</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <munit.version>3.1.0</munit.version>
-        <app.runtime>4.4.0</app.runtime>
         <mule.maven.plugin.version>4.1.1</mule.maven.plugin.version>
+        <app.runtime>4.4.0</app.runtime>
         <!-- DataWeave -->
         <dataweave.version>2.6.0</dataweave.version>
+        <mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
     </properties>
     <build>
         <plugins>
