@@ -1,0 +1,3 @@
+http:
+  localhost: 'https://mule-battlesnake-whulwf.2ky31l-1.deu-c1.eu1.cloudhub.io'
+  port: '8081'

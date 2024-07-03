@@ -8,9 +8,10 @@
 		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
 		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
-	<munit:config name="battlesnake-api-test-suite.xml" />
+	<munit:config name="battlesnake-api-test-suite.xml" >
+	</munit:config>
 	<http:request-config name="HTTP_Request_Configuration_test" basePath="/api">
-        <http:request-connection host="localhost" port="8081" />
+        <http:request-connection host="${http.localhost}" port="${http.port}" />
     </http:request-config>
 	<munit:test name="battlesnake-api-test-suite-battlesnake-api-mainTest" doc:id="cf1dd75b-a1ff-4e90-b0d4-e09d503e3948" description="Test">
 		<munit:enable-flow-sources >
