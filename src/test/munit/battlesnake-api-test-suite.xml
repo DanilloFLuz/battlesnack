@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<munit:config name="battlesnake-api-test-suite.xml" />
+	<http:request-config name="HTTP_Request_Configuration_test" basePath="/api">
+        <http:request-connection host="localhost" port="8081" />
+    </http:request-config>
+	<munit:test name="battlesnake-api-test-suite-battlesnake-api-mainTest" doc:id="cf1dd75b-a1ff-4e90-b0d4-e09d503e3948" description="Test">
+		<munit:enable-flow-sources >
+			<munit:enable-flow-source value="battlesnake-api-main" />
+			<munit:enable-flow-source value="get:\:battlesnake-api-config" />
+		</munit:enable-flow-sources>
+		<munit:execution >
+			<http:request method="GET" doc:name="Request" doc:id="f721ffa9-4c50-4153-b453-fd1c9b67c1d4" config-ref="HTTP_Request_Configuration_test" path="/">
+				<http:headers><![CDATA[#[{"Accept":"application/json"}]]]></http:headers>
+			</http:request>
+		</munit:execution>
+	</munit:test>
+
+
+</mule>

@@ -29,7 +29,7 @@ jobs:
         env:
           nexus_username: ${{ secrets.ANYPOINT_PLATFORM_USERNAME }}
           nexus_password: ${{ secrets.ANYPOINT_PLATFORM_PASSWORD }}
-        run: mvn test --settings .maven/settings.xml -DskipMunitTests
+        run: mvn test --settings .maven/settings.xml -DskipMunitTests -Dmunit.failIfNoTests=true
       
       - name: Publish to Exchange
         run: |
