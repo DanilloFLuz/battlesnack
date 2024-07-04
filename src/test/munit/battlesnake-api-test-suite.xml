@@ -18,10 +18,18 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 			<munit:enable-flow-source value="battlesnake-api-main" />
 			<munit:enable-flow-source value="get:\:battlesnake-api-config" />
 		</munit:enable-flow-sources>
-		<munit:execution >
-			<http:request method="GET" doc:name="Request MOCK TESTE" doc:id="f721ffa9-4c50-4153-b453-fd1c9b67c1d4" config-ref="HTTP_Request_Configuration_test" path="/">
-				<http:headers><![CDATA[#[{"Accept":"application/json"}]]]></http:headers>
-			</http:request>
+		<munit:behavior>
+			<munit-tools:mock-when doc:name="Mock when" doc:id="83967989-26d7-494c-a93d-477780222d34" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="battlesnake-api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:attributes value='#[{method: "GET", requestPath: "/api"}]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<flow-ref doc:name="battlesnake-api-main" doc:id="ea6c3d67-7a95-4db4-aeb9-953a56ee6556" name="battlesnake-api-main"/>
 		</munit:execution>
 	</munit:test>
 

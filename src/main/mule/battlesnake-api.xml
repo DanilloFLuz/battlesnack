@@ -6,7 +6,7 @@
     <apikit:config name="battlesnake-api-config" api="battlesnake-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <configuration-properties doc:name="Configuration properties" doc:id="3828176e-9ddb-46aa-a8cf-e6b42e24bf3d" file="application.yaml" />
     <global-property doc:name="Global Property" doc:id="316b3767-7d8e-420f-8574-0ad653d75d1e" name="env" value="local" />
-	<flow name="battlesnake-api-main">
+	<flow name="battlesnake-api-main" doc:id="9636b0ba-6a7c-4423-ac07-a09606369a54">
         <http:listener config-ref="battlesnake-api-httpListenerConfig" path="/api/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
                 <http:headers>#[vars.outboundHeaders default {}]</http:headers>
