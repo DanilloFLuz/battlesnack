@@ -18,9 +18,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 			<munit:enable-flow-source value="battlesnake-api-main" />
 			<munit:enable-flow-source value="get:\:battlesnake-api-config" />
 		</munit:enable-flow-sources>
-		<munit:behavior >
-			<munit-tools:mock-when doc:name="Mock when" doc:id="e18f2615-02a3-438a-938a-e5c263269fa4" />
-		</munit:behavior>
 		<munit:execution >
 			<http:request method="GET" doc:name="Request MOCK TESTE" doc:id="f721ffa9-4c50-4153-b453-fd1c9b67c1d4" config-ref="HTTP_Request_Configuration_test" path="/">
 				<http:headers><![CDATA[#[{"Accept":"application/json"}]]]></http:headers>

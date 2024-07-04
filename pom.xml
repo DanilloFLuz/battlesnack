@@ -136,6 +136,10 @@
 			<url>https://maven.eu1.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
 			<layout>default</layout>
 		</repository>
+		<repository>
+	        <id>central</id>
+	        <url>https://repo.maven.apache.org/maven2</url>
+	    </repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
@@ -156,4 +160,16 @@
 			<layout>default</layout>
 		</repository>
 	</distributionManagement>
+	<dependencyManagement>
+	    <dependencies>
+	        <dependency>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-dependencies</artifactId>
+	            <version>2.5.4</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+	        <!-- Outras dependências -->
+	    </dependencies>
+	</dependencyManagement>
 </project>
