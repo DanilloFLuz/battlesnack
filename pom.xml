@@ -50,24 +50,7 @@
 				<groupId>com.mulesoft.munit.tools</groupId>
 				<artifactId>munit-maven-plugin</artifactId>
 				<version>${munit.version}</version>
-				<executions>
-					<execution>
-						<id>test</id>
-						<phase>test</phase>
-						<goals>
-							<goal>test</goal>
-							<goal>coverage-report</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<coverage>
-						<runCoverage>true</runCoverage>
-						<formats>
-							<format>html</format>
-						</formats>
-					</coverage>
-				</configuration>
+				<extensions>true</extensions>
 			</plugin>
 		</plugins>
 	</build>
@@ -117,12 +100,4 @@
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
-	<distributionManagement>
-		<repository>
-			<id>Repository</id>
-			<name>Corporate Repository</name>
-			<url>https://maven.eu1.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
-			<layout>default</layout>
-		</repository>
-	</distributionManagement>
 </project>
