@@ -6,3 +6,6 @@ battlesnake:
     "head" : "caffeine"
     "tail" : "nr-booster"
     "version" : "0.0.1-beta"
+    
+http:
+  port: "8081"
