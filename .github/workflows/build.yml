@@ -26,9 +26,6 @@ jobs:
           java-version: 8
 
       - name: Test with Maven
-        env:
-          nexus_username: ${{ secrets.ANYPOINT_PLATFORM_USERNAME }}
-          nexus_password: ${{ secrets.ANYPOINT_PLATFORM_PASSWORD }}
         run: mvn test --settings .maven/settings.xml -Dmunit.failIfNoTests=true
       
       - name: Publish to Exchange
