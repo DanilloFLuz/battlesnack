@@ -38,8 +38,10 @@ fun removerCaminho(mover) = (safeMoves-mover)[randomInt(sizeOf(safeMoves-mover))
 fun removerDoisCaminhos(mover1, mover2) = (safeMoves-mover1-mover2)[randomInt(sizeOf(safeMoves-mover1-mover2))]
 
 fun naoBater(mover) = 
-if (head.x == 10) removerCaminho("up")
-else if(head.x == 0) removerCaminho("down") 
+if (head.x == 10) removerCaminho("right")
+else if(head.x == 0) removerCaminho("left") 
+else if(head.y == 10) removerCaminho("up")
+else if(head.y == 0) removerCaminho("down")
 else (safeMoves)[randomInt(sizeOf(safeMoves))]
 
 fun validaPosicao(mover) = 
@@ -49,11 +51,9 @@ else naoBater(mover)
 
 var nextMove = validaPosicao((safeMoves)[randomInt(sizeOf(safeMoves))])
 
-
-
-
 ---
 {
+    safe: (safeMoves)[randomInt(sizeOf(safeMoves))],
     move: nextMove,
 	shout: "Moving $(nextMove)"
 }
