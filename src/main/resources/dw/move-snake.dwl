@@ -37,6 +37,11 @@ var safeMoves = moves - myNeckLocation // - remove other dangerous locations
 fun removerCaminho(mover) = (safeMoves-mover)[randomInt(sizeOf(safeMoves-mover))]
 fun removerDoisCaminhos(mover1, mover2) = (safeMoves-mover1-mover2)[randomInt(sizeOf(safeMoves-mover1-mover2))]
 
+fun naoBater(mover) = 
+if (head.x == 10) removerCaminho("up")
+else if(head.x == 0) removerCaminho("down") 
+else (safeMoves)[randomInt(sizeOf(safeMoves))]
+
 fun validaPosicao(mover) = 
 if(head.x == 10 and head.y == 10) removerDoisCaminhos("up","right") 
 else if (head.x == 0 and head.y == 0) removerDoisCaminhos("down","left")
@@ -44,10 +49,7 @@ else naoBater(mover)
 
 var nextMove = validaPosicao((safeMoves)[randomInt(sizeOf(safeMoves))])
 
-fun naoBater(mover) = 
-if (head.x == 10) removerCaminho("up")
-else if(head.x == 0) removerCaminho("down") 
-else nextMove
+
 
 
 ---
