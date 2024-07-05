@@ -35,10 +35,14 @@ var myNeckLocation = neck match {
 var safeMoves = moves - myNeckLocation // - remove other dangerous locations
 
 // Next random move from safe moves
-var nextMove = safeMoves[randomInt(sizeOf(safeMoves))]
+fun safeboard(andar) = if (head.x == 10)(safeMoves-'up')[randomInt(sizeOf(safeMoves-'up'))]
+else if(head.x == 0)(safeMoves-'down')[randomInt(sizeOf(safeMoves-'down'))] else nextMove
 
+var nextMove = (safeMoves)[randomInt(sizeOf(safeMoves))]
+var nextMove2 = safeboard(nextMove)
 ---
 {
-	move: nextMove,
-	shout: "Moving $(nextMove)"
+    safe: safeMoves,
+    move: nextMove2,
+	shout: "Moving $(nextMove2)"
 }

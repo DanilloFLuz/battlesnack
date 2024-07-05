@@ -1,0 +1,110 @@
+{
+    "game": {
+        "id": "67a39cc0-8496-498e-9c97-4e845df45a88",
+        "ruleset": {
+            "name": "standard",
+            "version": "v1.2.3",
+            "settings": {
+                "foodSpawnChance": 15,
+                "minimumFood": 1,
+                "hazardDamagePerTurn": 0,
+                "hazardMap": "",
+                "hazardMapAuthor": "",
+                "royale": {
+                    "shrinkEveryNTurns": 0
+                },
+                "squad": {
+                    "allowBodyCollisions": false,
+                    "sharedElimination": false,
+                    "sharedHealth": false,
+                    "sharedLength": false
+                }
+            }
+        },
+        "map": "standard",
+        "timeout": 500,
+        "source": "custom"
+    },
+    "turn": 0,
+    "board": {
+        "height": 11,
+        "width": 11,
+        "snakes": [
+            {
+                "id": "gs_BSHjprXC6x67cPjQBKcCwPrb",
+                "name": "Test1",
+                "latency": "",
+                "health": 100,
+                "body": [
+                    {
+                        "x": 1,
+                        "y": 5
+                    },
+                    {
+                        "x": 1,
+                        "y": 5
+                    },
+                    {
+                        "x": 1,
+                        "y": 5
+                    }
+                ],
+                "head": {
+                    "x": 1,
+                    "y": 5
+                },
+                "length": 3,
+                "shout": "",
+                "squad": "",
+                "customizations": {
+                    "color": "#ff5500",
+                    "head": "default",
+                    "tail": "default"
+                }
+            }
+        ],
+        "food": [
+            {
+                "x": 0,
+                "y": 4
+            },
+            {
+                "x": 5,
+                "y": 5
+            }
+        ],
+        "hazards": []
+    },
+    "you": {
+        "id": "gs_BSHjprXC6x67cPjQBKcCwPrb",
+        "name": "Test1",
+        "latency": "",
+        "health": 100,
+        "body": [
+            {
+                "x": 1,
+                "y": 5
+            },
+            {
+                "x": 1,
+                "y": 5
+            },
+            {
+                "x": 1,
+                "y": 5
+            }
+        ],
+        "head": {
+            "x": 1,
+            "y": 5
+        },
+        "length": 3,
+        "shout": "",
+        "squad": "",
+        "customizations": {
+            "color": "#ff5500",
+            "head": "default",
+            "tail": "default"
+        }
+    }
+}

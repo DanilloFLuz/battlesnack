@@ -1,0 +1,11 @@
+battlesnake:
+  config:
+    "apiversion": "1"
+    "author": "danillofeliciano"
+    "color" : "#FFFFFF"
+    "head" : "rbc-bowler"
+    "tail" : "nr-booster"
+    "version" : "0.0.1-beta"
+
+http:
+  port: "8081"

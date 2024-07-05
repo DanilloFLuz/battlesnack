@@ -1,11 +1,12 @@
 battlesnake:
   config:
     "apiversion": "1"
-    "author": "alexandramartinez"
-    "color" : "#FF5500"
+    "author": "danillofeliciano"
+    "color" : "#FFFFFF"
     "head" : "ghost"
     "tail" : "leaf"
     "version" : "0.0.1-beta"
 
 http:
-  port: "8081"
+  "host": "localhost"
+  "port": "8081"

@@ -1,0 +1,12 @@
+battlesnake:
+  config:
+    "apiversion": "1"
+    "author": "danillofeliciano"
+    "color" : "#FFFFFF"
+    "head" : "ghost"
+    "tail" : "leaf"
+    "version" : "0.0.1-beta"
+
+http:
+  "host": "https://mule-battlesnake-whulwf.2ky31l-1.deu-c1.eu1.cloudhub.io"
+  "port": "8081"

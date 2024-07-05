@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<munit:config name="battlesnake-test-suite.xml" >
+	</munit:config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="1b61abf8-3825-491f-99aa-b4d65ab9c8e1" basePath="/api" >
+		<http:request-connection host="${http.host}" port="${http.port}" />
+	</http:request-config>
+	<munit:test name="Teste-sucesso-get-battlesnake" doc:id="e83b3143-31ff-4ec2-84cb-bd0fe0d8087a" >
+		<munit:enable-flow-sources >
+			<munit:enable-flow-source value="battlesnake-api-main" />
+			<munit:enable-flow-source value="get:\:battlesnake-api-config" />
+		</munit:enable-flow-sources>
+		<munit:execution >
+			<http:request method="GET" doc:name="Request" doc:id="f137e517-121a-4303-8be4-18e4a7474197" config-ref="HTTP_Request_configuration" path="/"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Verifica se não está vazio" doc:id="b7a2216d-5d98-456a-a2df-a3ec02f9e467" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+			<munit-tools:assert-equals doc:name="Verificar campo" doc:id="c39c60c9-bf3d-4448-8062-096e32086027" actual="#[payload.author]" expected='#["danillofeliciano"]'/>
+			<munit-tools:assert-that doc:name="Retorno 200" doc:id="3a51b049-6a7f-4d68-83f5-9b18d23b3331" is="#[MunitTools::equalTo(200)]" expression="#[attributes.statusCode]" message="HTTP Status não está correto"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="battlesnake-test-suiteTest" doc:id="9c927d6b-a1eb-45fc-a3ab-0456deadf390" >
+		<munit:enable-flow-sources >
+			<munit:enable-flow-source value="battlesnake-api-main" />
+			<munit:enable-flow-source value="post:\start:application\json:battlesnake-api-config" />
+		</munit:enable-flow-sources>
+		<munit:execution >
+			<http:request method="POST" doc:name="Request" doc:id="dde04a26-caa5-4cfa-9ee0-1cf801e8a2f4" config-ref="HTTP_Request_configuration" path="/start" >
+				<http:body ><![CDATA[#[output application/json
+---
+readUrl('classpath://dw/request/start_request.json', 'application/json')]]]></http:body>
+				<http:headers ><![CDATA[#[{"Content-type": "application/json"}]]]></http:headers>
+			</http:request>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Verifica se a saida está não vazia" doc:id="cc697053-3d52-4f57-9bb4-3dfc5aa5baf6" message="Payload está vazio" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+			<munit-tools:assert-equals doc:name="Verifica o ID" doc:id="fe6d67e0-b79c-4f5b-a094-e83b73e79f10" actual="#[payload.game.id]" expected='#["67a39cc0-8496-498e-9c97-4e845df45a88"]'/>
+			<munit-tools:assert-that doc:name="Assert that" doc:id="0b8e5e49-0ab5-458f-b9a6-654cba99f9c2" expression="#[attributes.statusCode]" is="#[MunitTools::equalTo(200)]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="battlesnake-test-suiteTest1" doc:id="d06ab531-c4a0-4c42-b188-1c34eb75c07e" >
+		
+		<munit:enable-flow-sources>
+			
+			
+			<munit:enable-flow-source value="battlesnake-api-main" />
+			<munit:enable-flow-source value="post:\start:application\json:battlesnake-api-config" />
+		</munit:enable-flow-sources>
+		<munit:execution >
+			<http:request method="POST" doc:name="Request" doc:id="3410b7ee-1c15-4df0-9858-daafd3c5bf74" config-ref="HTTP_Request_configuration" path="/end" >
+				<http:body ><![CDATA[#[output application/json
+---
+readUrl('classpath://dw/request/start_request.json', 'application/json')]]]></http:body>
+				<http:headers ><![CDATA[#[{"Content-type": "application/json"}]]]></http:headers>
+			</http:request>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Verifica se a saida está não vazia" doc:id="eb8b8458-0051-4dd9-8cf7-e3eb441dfb9c" message="Payload está vazio" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+			<munit-tools:assert-equals doc:name="Verifica o ID" doc:id="9704feb3-a9ce-4f70-ae3d-507af455b9c8" actual="#[payload.game.id]" expected='#["67a39cc0-8496-498e-9c97-4e845df45a88"]' />
+			<munit-tools:assert-that doc:name="Assert that" doc:id="aa64a1fa-90b7-41d1-90ca-d9398da59e5e" expression="#[attributes.statusCode]" is="#[MunitTools::equalTo(200)]" />
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
