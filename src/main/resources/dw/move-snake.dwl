@@ -33,16 +33,25 @@ var myNeckLocation = neck match {
 
 // Find safe moves by eliminating neck location and any other locations computed in above steps
 var safeMoves = moves - myNeckLocation // - remove other dangerous locations
-
 // Next random move from safe moves
-fun safeboard(andar) = if (head.x == 10)(safeMoves-'up')[randomInt(sizeOf(safeMoves-'up'))]
-else if(head.x == 0)(safeMoves-'down')[randomInt(sizeOf(safeMoves-'down'))] else nextMove
+fun removerCaminho(mover) = (safeMoves-mover)[randomInt(sizeOf(safeMoves-mover))]
+fun removerDoisCaminhos(mover1, mover2) = (safeMoves-mover1-mover2)[randomInt(sizeOf(safeMoves-mover1-mover2))]
 
-var nextMove = (safeMoves)[randomInt(sizeOf(safeMoves))]
-var nextMove2 = safeboard(nextMove)
+fun validaPosicao(mover) = 
+if(head.x == 10 and head.y == 10) removerDoisCaminhos("up","right") 
+else if (head.x == 0 and head.y == 0) removerDoisCaminhos("down","left")
+else naoBater(mover)
+
+
+fun naoBater(mover) = 
+if (head.x == 10) removerCaminho("up")
+else if(head.x == 0) removerCaminho("down") 
+else nextMove
+
+var nextMove = validaPosicao((safeMoves)[randomInt(sizeOf(safeMoves))])
+
 ---
 {
-    safe: safeMoves,
-    move: nextMove2,
-	shout: "Moving $(nextMove2)"
+    move: nextMove,
+	shout: "Moving $(nextMove)"
 }
