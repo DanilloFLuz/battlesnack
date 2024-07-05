@@ -42,13 +42,13 @@ if(head.x == 10 and head.y == 10) removerDoisCaminhos("up","right")
 else if (head.x == 0 and head.y == 0) removerDoisCaminhos("down","left")
 else naoBater(mover)
 
+var nextMove = validaPosicao((safeMoves)[randomInt(sizeOf(safeMoves))])
 
 fun naoBater(mover) = 
 if (head.x == 10) removerCaminho("up")
 else if(head.x == 0) removerCaminho("down") 
 else nextMove
 
-var nextMove = validaPosicao((safeMoves)[randomInt(sizeOf(safeMoves))])
 
 ---
 {
