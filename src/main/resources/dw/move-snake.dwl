@@ -1,72 +1,157 @@
 %dw 2.0
-output application/json
+output application/json indent = false
+import * from dw::Common
 
-var body = payload.you.body
+var noMoves:Moves = []
+var me:Snake = payload.you
+var board:Board = payload.board
+var food:Points = board.food
+var maxFutureMoves:Number = 8
+var minFutureMoves:Number = maxFutureMoves * 2
+var otherSnakes:Snakes = (board.snakes filter ($.id != me.id))
+var otherSnakesBodies:Array<Points> = otherSnakes.body default []
 
-var board = payload.board
-var head = body[0] // First body part is always head
-var neck = body[1] // Second body part is always neck
-var food = board.food // Comida
-
-var moves = ["up", "down", "left", "right"]
-
-// Step 0: Find my neck location so I don't eat myself
-var myNeckLocation = neck match {
-	case neck if neck.x < head.x -> "left" //my neck is on the left of my head
-	case neck if neck.x > head.x -> "right" //my neck is on the right of my head
-	case neck if neck.y < head.y -> "down" //my neck is below my head
-	case neck if neck.y > head.y -> "up"	//my neck is above my head
-	else -> ''
+type MovesCountObj = {
+    up?: Number,
+    down?: Number,
+    left?: Number,
+    right?: Number
+}
+type FutureMovesObj = {
+    move: Move,
+    size: Number
 }
 
-// TODO: Step 2 - Don't hit yourself.
-// Use information from `body` to avoid moves that would collide with yourself.
-
-// TODO: Step 3 - Don't collide with others.
-// Use information from `payload` to prevent your Battlesnake from colliding with others.
-
-// TODO: Step 4 - Find food.
-// Use information in `payload` to seek out and find food.
-// food = board.food
-
-// Find safe moves by eliminating neck location and any other locations computed in above steps
-var safeMoves = moves - myNeckLocation // - remove other dangerous locations
-
-fun removerCaminho(mover) = (safeMoves-mover)[randomInt(sizeOf(safeMoves-mover))]
-fun removerDoisCaminhos(mover1, mover2) = (safeMoves-mover1-mover2)[randomInt(sizeOf(safeMoves-mover1-mover2))]
-
-//Não bater quando chegar nos cantos
-fun naoBaterBoard(mover) = 
-if (head.x == 10) removerCaminho("right")
-else if(head.x == 0) removerCaminho("left") 
-else if(head.y == 10) removerCaminho("up")
-else if(head.y == 0) removerCaminho("down")
-else (safeMoves)[randomInt(sizeOf(safeMoves))]
-
-//Não bater quando chegar nas pontas
-fun validaPosicaoBoard(mover) = 
-if(head.x == 10 and head.y == 10) removerDoisCaminhos("up","right")
-else if (head.x == 0 and head.y == 0) removerDoisCaminhos("down","left")
-else naoBaterBoard(mover)
-
-var proximidade = 1
-
-var nextMove = validaPosicaoBoard((safeMoves)[randomInt(sizeOf(safeMoves))])
-
-// Função para calcular a distância euclidiana entre dois pontos
-fun euclideanDistance(p1, p2) = sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y))
-
-// Encontrar o ponto mais próximo
-var closestPoint = food reduce ((closest, current) -> 
-  if (euclideanDistance(current, head) < euclideanDistance(closest, head)) 
-    current 
-  else 
-    closest
-) default food[0]
+fun getSafeMoves(body:Points):Moves = do {
+    var head:Point = body[0]
+    var wallsMoves:Moves = [
+        (down) if head.y == 0,
+        (up) if head.y == (board.width - 1),
+        (left) if head.x == 0,
+        (right) if head.x == (board.height - 1)
+    ]
+    var allSnakesMoves:Moves = flatten(otherSnakesBodies << body) distinctBy $ then
+        [
+            (down) if ($ contains (head moveTo down)),
+            (up) if ($ contains (head moveTo up)),
+            (left) if ($ contains (head moveTo left)),
+            (right) if ($ contains (head moveTo right))
+	    ]
+    ---
+    allMoves -- wallsMoves -- allSnakesMoves
+}
+var safeMoves:Moves = getSafeMoves(me.body)
+fun filterOnlySafeMoves(fromMoves:Moves):Moves =
+    fromMoves filter (safeMoves contains $)
+fun getCloseSnakes(myHead:Point=me.head, myLength:Number=me.length):Snakes = 
+    otherSnakes filter ((myHead distanceTo $.head) <= 2) map {
+        isSmaller: $.length < myLength,
+        ($)
+    }
+var closestFoodMoves:Moves = do {
+    var suggestedMoves:Array = food map {
+            ($),
+            distance: me.head distanceTo $,
+            moves: filterOnlySafeMoves(me.head whereIs $)
+        }
+        filter (not isEmpty($.moves))
+    ---
+    if (not isEmpty(suggestedMoves))
+        suggestedMoves orderBy $.distance
+        then flatten($.moves) distinctBy $
+    else noMoves
+}
+var closeSnakesHeadsMoves:Moves = do {
+    var closeSnakes:Snakes = getCloseSnakes()
+    ---
+    if (isEmpty(closeSnakes)) noMoves
+    else filterOnlySafeMoves(closeSnakes flatMap (
+        if ($.isSmaller) me.head whereIs $.head //noMoves // change this behaviour if you want to be aggressive
+        else safeMoves -- (me.head whereIs $.head)
+    ))
+}
+fun getFutureMovesRec(availableMoves:Moves=safeMoves, myBody:Points=me.body, level:Number=0):Array<FutureMovesObj> = 
+    availableMoves map ((move) -> do {
+        @Lazy
+        var newHead:Point = myBody[0] moveTo move
+        @Lazy 
+        var newBody:Points = if (isFood(newHead,food)) (newHead >> myBody) else (newHead >> myBody[0 to -2])
+        @Lazy
+        var newSafeMoves:Moves = getSafeMoves(newBody)
+        @Lazy
+        var lookFurther = if (level == maxFutureMoves) []
+            else getFutureMovesRec(newSafeMoves, newBody, level+1)
+        ---
+        {
+            move: move,
+            size: sizeOf(lookFurther),
+            lookFurther: lookFurther 
+        }
+    }) 
+    map {
+        move: $.move,
+        size: sum(flatten($..size))
+    }
+var futureMovesObjArr:Array<FutureMovesObj> = getFutureMovesRec() orderBy -$.size
+var futureMoves:Moves = do {
+    var futureMovesAvgSize:Number = avg(futureMovesObjArr.size)
+    ---
+    (
+        if ((futureMovesObjArr[0].size - futureMovesObjArr[-1].size) > futureMovesAvgSize)
+            futureMovesObjArr filter ($.size > futureMovesAvgSize)
+        else (futureMovesObjArr filter ($.size > minFutureMoves))
+    ).move default []
+}
+fun getMovesCount(moves:Moves, existingCountedMoves={}):MovesCountObj =   
+    if (isEmpty(moves)) existingCountedMoves orderBy -$
+    else getMovesCount(
+        moves[1 to -1], 
+        existingCountedMoves update {
+            case count at ."$(moves[0])"! -> (count default 0) + 1
+        }
+    )
+var countedMoves = do {
+    var movesByPriorityDraft = getMovesCount(closeSnakesHeadsMoves) 
+        then getMovesCount(closestFoodMoves, $) 
+        then getMovesCount(futureMoves, $) 
+    var futureMovesGrouped = futureMovesObjArr groupBy $.move
+    ---
+    if (movesByPriorityDraft[0] == movesByPriorityDraft[1])
+        movesByPriorityDraft mapObject ((value, key) -> do {
+            @Lazy
+            var newHead:Point = (me.head moveTo (key as Move))
+            @Lazy
+            var closeBiggerSnakes:Snakes = getCloseSnakes(newHead, me.length) filter (not $.isSmaller)
+            @Lazy
+            var isBiggerSnakeClose:Boolean = not isEmpty(closeBiggerSnakes)
+            @Lazy 
+            var hasMinFutureMoves:Boolean = ((futureMovesGrouped[key][0]).size default 0) >= minFutureMoves
+            ---
+            (key): 
+                if (hasMinFutureMoves)
+                    if (isBiggerSnakeClose and isFood(newHead,food))
+                        value-1
+                    else value
+                else value-1
+        }) orderBy -$
+        then if ($[0] == $[1]) getMovesCount(futureMoves, $) else $
+    else 
+        movesByPriorityDraft
+}
 ---
 {
-    terere: euclideanDistance(food[0], head),
-    tiriri: closestPoint,
-    move: nextMove,
-	shout: "Moving $(nextMove)"
+    //debug only
+
+    // safeMoves: safeMoves,
+    // closeSnakesHeads: closeSnakesHeadsMoves,
+    // closestFood: closestFoodMoves,
+    // futureMovesObjArr: futureMovesObjArr,
+    // futureMoves: futureMoves,
+    // countedMoves: countedMoves,
+
+    //needed fields
+
+    move: keysOf(countedMoves)[0] default safeMoves[0],
+    turn: payload.turn,
+    id: payload.game.id
 }
