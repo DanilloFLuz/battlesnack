@@ -72,13 +72,13 @@ var closeSnakesHeadsMoves:Moves = do {
 }
 fun getFutureMovesRec(availableMoves:Moves=safeMoves, myBody:Points=me.body, level:Number=0):Array<FutureMovesObj> = 
     availableMoves map ((move) -> do {
-        @Lazy
+
         var newHead:Point = myBody[0] moveTo move
-        @Lazy 
+
         var newBody:Points = if (isFood(newHead,food)) (newHead >> myBody) else (newHead >> myBody[0 to -2])
-        @Lazy
+
         var newSafeMoves:Moves = getSafeMoves(newBody)
-        @Lazy
+
         var lookFurther = if (level == maxFutureMoves) []
             else getFutureMovesRec(newSafeMoves, newBody, level+1)
         ---
@@ -118,13 +118,13 @@ var countedMoves = do {
     ---
     if (movesByPriorityDraft[0] == movesByPriorityDraft[1])
         movesByPriorityDraft mapObject ((value, key) -> do {
-            @Lazy
+
             var newHead:Point = (me.head moveTo (key as Move))
-            @Lazy
+
             var closeBiggerSnakes:Snakes = getCloseSnakes(newHead, me.length) filter (not $.isSmaller)
-            @Lazy
+
             var isBiggerSnakeClose:Boolean = not isEmpty(closeBiggerSnakes)
-            @Lazy 
+
             var hasMinFutureMoves:Boolean = ((futureMovesGrouped[key][0]).size default 0) >= minFutureMoves
             ---
             (key): 
