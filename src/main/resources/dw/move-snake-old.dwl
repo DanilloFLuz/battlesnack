@@ -48,7 +48,7 @@ var moveToFood = do {
     move 
 }
 
-var safeMoves = getSafeMoves(moveToFood)[0]
+var safeMoves = moveToFood default getSafeMoves(moveToFood)[0]
 ---
 {
     move: safeMoves,
