@@ -1,6 +1,6 @@
 %dw 2.0
 output application/json
-import * from Common
+import * from dw::Common
 
 var body = payload.you.body
 
