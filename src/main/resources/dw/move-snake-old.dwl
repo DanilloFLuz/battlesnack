@@ -25,7 +25,6 @@ fun getSafeMoves(move):Moves = do {
     ---
     allMoves -- wallsMoves -- snake
 }
-var safeMoves:Moves = getSafeMoves(body)
 
 var findNearFood = do {
     fun calcularDistancia(ponto1, ponto2) =
@@ -49,8 +48,9 @@ var moveToFood = do {
     move 
 }
 
+var safeMoves = getSafeMoves(moveToFood)[0]
 ---
 {
-    move: getSafeMoves(moveToFood)[0],
-	shout: "Moving $(getSafeMoves(moveToFood)[0])"
+    move: safeMoves,
+	shout: "Moving $(safeMoves)"
 }
